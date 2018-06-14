@@ -38,6 +38,11 @@ class ResourcesGenerator extends Base {
       desc: 'Name of your react-native project',
       default: '.',
     });
+    this.option('plistFileName', {
+      type: asset => asset,
+      desc: 'Name of your plist file',
+      default: 'Info.plist',
+    });
     this.option('androidSrcDirectory', {
       type: asset => asset,
       desc: 'The directory under `src` to save the assets',
@@ -175,7 +180,7 @@ class ResourcesGenerator extends Base {
     );
 
     const plistPath = this.destinationPath(
-      `${this.options.assetsOutputPath}/ios/${this.projectName}/Info.plist`
+      `${this.options.assetsOutputPath}/ios/${this.projectName}/${this.options.plistFileName}`
     );
     this.fs.write(
       plistPath,
